@@ -1,1 +1,1 @@
-# EAN
+# Global Code
