@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
       })
     }
 
-    res.status(201).json({
+    res.status(200).json({
       data: result.Items
     })
   })
@@ -42,6 +42,7 @@ app.post('/', function(req, res) {
     TableName: process.env.USERS_TABLE,
     Item: {
       id: req.body.id,
+      name: req.body.name
     }
   }
 
@@ -54,7 +55,8 @@ app.post('/', function(req, res) {
 
     res.status(201).json({
       data: {
-        id: req.body.id
+        id: req.body.id,
+        name: req.body.name
       }
     })
   });
