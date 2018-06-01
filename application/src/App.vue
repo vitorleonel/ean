@@ -1,18 +1,6 @@
 <template>
-  <div class="container">
-    <search />
-  </div>
+  <router-view></router-view>
 </template>
-
-<script>
-  import Search from './components/Search'
-
-  export default {
-    components: {
-      Search
-    }
-  }
-</script>
 
 <style lang="scss">
   @import url('//fonts.googleapis.com/css?family=Poppins:300,400,700');
@@ -25,19 +13,27 @@
   body {
     font-family: 'Poppins', sans-serif;
     font-size: 100%;
-    background-color: #ffd700;
-    background-image: url('/assets/background.jpg');
-    background-position: center bottom;
+    color: #2d3436;
     margin: 0;
   }
 
   .container {
-    width: 100vw;
-    height: 100vh;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .has-navbar {
+    padding-top: 5rem;
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .subtitle {
+    color: #636e72;
   }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
   <form class="search" @submit.prevent="submitForm">
-    <input type="text" placeholder="Que produto você esta procurando hoje?">
+    <input type="text" v-model="search" placeholder="Que produto você esta procurando hoje?">
 
     <button>
       <i class="fas fa-search"></i>
@@ -10,16 +10,59 @@
 
 <script>
   export default {
+    data() {
+      return {
+        search: ''
+      }
+    },
+
+    mounted() {
+      this.getSearch()
+    },
+
     methods: {
-      submitForm() {}
+      getSearch() {
+        if(this.$route.name !== 'app.search.index') {
+          return
+        }
+        
+        this.search = this.prepareString(this.$route.params.search, true)
+      },
+
+      submitForm() {
+        if(! this.search || this.search.length < 5) {
+          return
+        }
+
+        this.toSearch(this.search)
+      },
+
+      toSearch(value) {
+        const search = this.prepareString(value)
+
+        this.$router.push({
+          name: 'app.search.index',
+          params: {
+            search
+          }
+        })
+      },
+
+      prepareString(value, inverse = false) {
+        if(! inverse) {
+          return value.toLowerCase().trim().replace(/ /g, '-')
+        }
+
+        return value.toLowerCase().trim().replace(/-/g, ' ')
+      },
     }
   }
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
   .search {
-    width: 30vw;
+    width: 90%;
     padding: 0.5rem;
     background-color: white;
     box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.2);
@@ -33,6 +76,14 @@
 
     &:hover {
       box-shadow: 0 1px 20px 1px rgba(69, 65, 78, 0.4);
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 45%;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 30%;
     }
 
     input,

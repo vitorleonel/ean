@@ -1,11 +1,11 @@
 {
-  "name": "eans.vitorleonel.com",
-  "version": "0.1.0",
+  "name": "globalcode",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "aws s3 sync dist s3://eans.vitorleonel.com --acl public-read"
+    "deploy": "aws s3 cp dist s3://globalcode.tk --acl public-read --cache-control max-age=300 --recursive"
   },
   "dependencies": {
     "vue": "^2.5.16",
