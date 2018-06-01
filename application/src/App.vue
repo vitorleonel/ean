@@ -14,6 +14,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 100%;
     color: #2d3436;
+    background-color: rgba(223, 230, 233, 0.3);
     margin: 0;
   }
 
