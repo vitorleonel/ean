@@ -4,12 +4,12 @@ const serverless = require('serverless-http')
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-const AWS = require('aws-sdk')
+const { DynamoDB } = require('aws-sdk')
 
 /**
  * Defines
  */
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = new DynamoDB.DocumentClient()
 
 /**
  * Uses
@@ -62,11 +62,11 @@ app.post('/', function(req, res) {
   });
 })
 
-app.get('/:eanId', function (req, res) {
+app.get('/:id', function (req, res) {
   const params = {
     TableName: process.env.USERS_TABLE,
     Key: {
-      id: req.params.eanId
+      id: req.params.id
     }
   }
 
